@@ -6,7 +6,7 @@ import {IndexRouter} from './controllers/v0/index.router';
 
 import bodyParser from 'body-parser';
 import {config} from './config/config';
-
+import {V0_FEED_MODELS} from './controllers/v0/model.index';
 
 
 (async () => {
@@ -27,7 +27,7 @@ import {config} from './config/config';
     allowedHeaders: [
       'Origin', 'X-Requested-With',
       'Content-Type', 'Accept',
-      'X-Access-Token', 'Authorization',
+      'X-Access-Token', 'Authorization',"Access-Control-Allow-Origin", 
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
     preflightContinue: true,

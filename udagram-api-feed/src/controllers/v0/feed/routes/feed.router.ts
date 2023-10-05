@@ -32,6 +32,7 @@ router.get('/', async (req: Request, res: Response) => {
   items.rows.map((item) => {
     if (item.url) {
       item.url = AWS.getGetSignedUrl(item.url);
+      console.log(">>>>>", item.url)
     }
   });
   res.send(items);
@@ -47,7 +48,7 @@ router.get('/:id',
 
 // Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName',
-    requireAuth,
+//     requireAuth,
     async (req: Request, res: Response) => {
       const {fileName} = req.params;
       const url = AWS.getPutSignedUrl(fileName);
@@ -56,7 +57,7 @@ router.get('/signed-url/:fileName',
 
 // Create feed with metadata
 router.post('/',
-    requireAuth,
+//     requireAuth,
     async (req: Request, res: Response) => {
       const caption = req.body.caption;
       const fileName = req.body.url; // same as S3 key name
@@ -80,4 +81,4 @@ router.post('/',
       res.status(201).send(savedItem);
     });
 
-export const wFeedRouter: Router = router;
+export const FeedRouter: Router = router;
